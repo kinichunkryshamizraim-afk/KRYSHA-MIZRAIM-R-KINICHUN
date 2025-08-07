@@ -1,0 +1,776 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinichun Krysha Mizraim - Criminology Student Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #3182ce;
+            --sunset-orange: #ff6b6b;
+            --sunset-pink: #ff8e8e;
+            --sunset-yellow: #ffa726;
+            --text-color: #2d3748;
+            --white: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(135deg, 
+                #ff6b6b 0%, 
+                #ff8e8e 15%, 
+                #ffa726 30%, 
+                #ffb74d 45%, 
+                #ff7043 60%, 
+                #8e24aa 75%, 
+                #1a365d 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Sunset background overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><radialGradient id="sun" cx="50%" cy="20%" r="15%"><stop offset="0%" style="stop-color:%23fff9c4;stop-opacity:0.8"/><stop offset="100%" style="stop-color:%23ff6b6b;stop-opacity:0.3"/></radialGradient><linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%23ff8e8e;stop-opacity:0.6"/><stop offset="50%" style="stop-color:%23ffa726;stop-opacity:0.4"/><stop offset="100%" style="stop-color:%238e24aa;stop-opacity:0.7"/></linearGradient></defs><rect width="100%" height="100%" fill="url(%23sky)"/><circle cx="600" cy="160" r="120" fill="url(%23sun)"/><path d="M0,400 Q300,380 600,400 T1200,400 L1200,800 L0,800 Z" fill="%23ff7043" opacity="0.3"/><path d="M0,500 Q400,480 800,500 T1200,500 L1200,800 L0,800 Z" fill="%23ff6b6b" opacity="0.2"/></svg>');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            min-height: 100vh;
+            box-shadow: 0 0 50px rgba(0,0,0,0.1);
+        }
+
+        /* Floating decorative elements */
+        .floating-element {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .sun-icon {
+            top: 50px;
+            right: 50px;
+            font-size: 40px;
+            animation: rotate 20s linear infinite, float 8s ease-in-out infinite;
+        }
+
+        .cloud1 { top: 100px; left: 10%; font-size: 30px; animation-delay: 0s; }
+        .cloud2 { top: 150px; right: 20%; font-size: 25px; animation-delay: 2s; }
+        .cloud3 { bottom: 200px; left: 15%; font-size: 35px; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Header */
+        header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, var(--white), var(--sunset-pink), var(--sunset-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-content .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            color: var(--white);
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+        }
+
+        .university-info {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1.5rem auto;
+            max-width: 600px;
+            border: 2px dashed var(--sunset-orange);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .personal-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-label {
+            margin-right: 8px;
+            font-size: 1.1em;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 1rem 0;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--sunset-orange);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Main Content */
+        main {
+            padding: 2rem;
+        }
+
+        .section {
+            display: none;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--sunset-orange), var(--sunset-yellow));
+            border-radius: 2px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, var(--sunset-orange), var(--sunset-yellow));
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+            border-color: var(--sunset-orange);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--sunset-orange), var(--sunset-yellow));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--white);
+            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin: 0;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+        }
+
+        .card p, .card li {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0.5rem;
+        }
+
+        .card strong {
+            color: var(--sunset-yellow);
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Interests & Hobbies Special Cards */
+        .interest-hobby-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .interest-item, .hobby-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--sunset-orange);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .interest-item:hover, .hobby-item:hover {
+            transform: translateX(5px);
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+        }
+
+        .interest-item .icon, .hobby-item .icon {
+            font-size: 1.3em;
+        }
+
+        /* Skills */
+        .skill-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--sunset-orange);
+        }
+
+        .skill-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .skill-bar {
+            background: rgba(255,255,255,0.2);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--sunset-orange), var(--sunset-yellow));
+            border-radius: 4px;
+            transition: width 1s ease;
+            box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 2rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 10px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--sunset-orange);
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--sunset-orange), var(--sunset-yellow));
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-top: 1px solid var(--glass-border);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            main {
+                padding: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .grid-2,
+            .grid-3,
+            .interest-hobby-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .personal-info {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-element {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating decorative elements -->
+    <div class="floating-element sun-icon">☀️</div>
+    <div class="floating-element cloud1">☁️</div>
+    <div class="floating-element cloud2">☁️</div>
+    <div class="floating-element cloud3">☁️</div>
+
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Kinichun Krysha Mizraim</h1>
+                <p class="subtitle">Aspiring Criminal Justice Professional | Capturing Life's Beautiful Moments</p>
+                <div class="university-info">
+                    <p><strong>University of the Cordilleras</strong></p>
+                    <p>3rd Year Student • Bachelor of Science in Criminology</p>
+                    <div class="personal-info">
+                        <div class="info-item">
+                            <span class="info-label">🎂</span>
+                            <span>September 30, 2005 (19 years old)</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">👨‍👩‍👧</span>
+                            <span>Eva & Marvin Kinichun</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">👑</span>
+                            <span>First Child</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">✨</span>
+                            <span>Passionate Life Enthusiast</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <nav>
+            <div class="nav-container">
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#about" class="nav-link active">About Me</a></li>
+                    <li class="nav-item"><a href="#interests" class="nav-link">Interests & Hobbies</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main>
+            <!-- About Me Section -->
+            <section id="about" class="section active">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">👤</div>
+                        <h3 class="card-title">Personal Biography</h3>
+                    </div>
+                    <div style="display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 300px;">
+                            <p style="margin-bottom: 1rem;">Welcome to my portfolio! I am Kinichun Krysha Mizraim, a vibrant 19-year-old who brings joy and creativity to everything she does. As the first child of Eva and Marvin Kinichun, I have grown into a wonderful young woman with diverse interests and a passion for life's simple pleasures.</p>
+                            <p style="margin-bottom: 1rem;">Currently pursuing my Bachelor of Science in Criminology at the University of the Cordilleras, I am passionate about criminal justice and public safety. My academic journey has been focused on understanding the complexities of criminal behavior, law enforcement procedures, and the justice system.</p>
+                            <p>I am committed to making a positive impact in the field of criminology while maintaining a balanced life filled with poetry, photography, and the beautiful moments that make life worth living. Through my studies, I have developed strong analytical skills, attention to detail, and a deep understanding of criminal justice principles that I aim to apply in my future career.</p>
+                        </div>
+                        <div style="flex: 0 0 300px; text-align: center;">
+                            <img                 <div class="grid-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">🎯</div>
+                            <h3 class="card-title">Academic Focus</h3>
+                        </div>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>Criminal Law and Procedures</li>
+                            <li>Criminological Theories</li>
+                            <li>Forensic Science</li>
+                            <li>Criminal Investigation</li>
+                            <li>Penology and Correctional Administration</li>
+                            <li>Police Administration</li>
+                            <li>Community Safety Programs</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">⭐</div>
+                            <h3 class="card-title">Life Philosophy & Goals</h3>
+                        </div>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>Law Enforcement Career</li>
+                            <li>Criminal Investigation Specialization</li>
+                            <li>Capturing beautiful sunsets & sunrises</li>
+                            <li>Reading and writing poetry</li>
+                            <li>Criminal Justice Reform advocacy</li>
+                            <li>Community service and public safety</li>
+                            <li>Balancing academics with life's joys</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interests & Hobbies Section -->
+            <section id="interests" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Interests & Hobbies</h2>
+                </div>
+
+                <div class="interest-hobby-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">💖</div>
+                            <h3 class="card-title">Interests</h3>
+                        </div>
+                        <div class="interest-item">
+                            <span class="icon">📖</span>
+                            <span>Reading Books & Poetry</span>
+                        </div>
+                        <div class="interest-item">
+                            <span class="icon">✍️</span>
+                            <span>Creating Poems</span>
+                        </div>
+                        <div class="interest-item">
+                            <span class="icon">📸</span>
+                            <span>Photography - Sunsets & Sunrises</span>
+                        </div>
+                        <div class="interest-item">
+                            <span class="icon">💄</span>
+                            <span>Make-ups & Beauty</span>
+                        </div>
+                        <div class="interest-item">
+                            <span class="icon">✈️</span>
+                            <span>Traveling & Exploring</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">🎯</div>
+                            <h3 class="card-title">Hobbies</h3>
+                        </div>
+                        <div class="hobby-item">
+                            <span class="icon">🏸</span>
+                            <span>Playing Badminton</span>
+                        </div>
+                        <div class="hobby-item">
+                            <span class="icon">🏃‍♀️</span>
+                            <span>Jogging & Running</span>
+                        </div>
+                        <div class="hobby-item">
+                            <span class="icon">📸</span>
+                            <span>Taking Pictures</span>
+                        </div>
+                        <div class="hobby-item">
+                            <span class="icon">📚</span>
+                            <span>Reading Books & Poems</span>
+                        </div>
+                        <div class="hobby-item">
+                            <span class="icon">🍽️</span>
+                            <span>Eating Delicious Food</span>
+                        </div>
+                        <div class="hobby-item">
+                            <span class="icon">😴</span>
+                            <span>Sleeping & Relaxing</span>
+                        </div>
+                        <div class="hobby-item">
+                            <span class="icon">📺</span>
+                            <span>Watching K-Dramas</span>
+                        </div>
+                        <div class="hobby-item">
+                            <span class="icon">🌍</span>
+                            <span>Traveling & Adventures</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">🌅</div>
+                        <h3 class="card-title">About My Passions</h3>
+                    </div>
+                    <p style="margin-bottom: 1rem;">My interests and hobbies reflect my appreciation for beauty, creativity, and life's simple pleasures. Photography, especially during golden hours, allows me to capture the world's natural beauty and practice skills that complement my forensic studies. Creating and reading poetry nurtures my creative side and enhances my communication skills.</p>
+                    <p style="margin-bottom: 1rem;">Staying active through badminton and jogging keeps me physically fit and mentally sharp, which is essential for my demanding criminology studies. These sports also teach me discipline, teamwork, and perseverance - qualities that will serve me well in law enforcement.</p>
+                    <p style="margin-bottom: 1rem;">Traveling opens my mind to different cultures and perspectives, which is invaluable for understanding diverse communities I may serve in my future career. Whether I'm exploring new places, experimenting with makeup, enjoying delicious food, or getting lost in a captivating K-drama, each activity contributes to my personal growth and brings balance to my academic life.</p>
+                    <p>These hobbies help me maintain a healthy work-life balance and remind me that there's beauty to be found in everyday moments, from a peaceful morning jog to discovering a new poem that speaks to my soul.</p>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Contact Me</h2>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">📧</div>
+                        <h3 class="card-title">Get In Touch</h3>
+                    </div>
+                    <p style="margin-bottom: 2rem;">I'd love to connect with fellow students, professionals in criminal justice, poetry enthusiasts, or anyone who shares similar interests. Feel free to reach out!</p>
+                    
+                    <div class="contact-form">
+                        <form>
+                            <div class="form-group">
+                                <label class="form-label" for="name">Name</label>
+                                <input type="text" id="name" class="form-input" placeholder="Your full name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="email">Email</label>
+                                <input type="email" id="email" class="form-input" placeholder="your.email@example.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="subject">Subject</label>
+                                <input type="text" id="subject" class="form-input" placeholder="What's this about?" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="message">Message</label>
+                                <textarea id="message" class="form-input" rows="5" placeholder="Your message here..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Kinichun Krysha Mizraim. All rights reserved.</p>
+            <p>Capturing life's beautiful moments, one sunset at a time. 🌅</p>
+        </footer>
+    </div>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.section');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all nav links and sections
+                    navLinks.forEach(nl => nl.classList.remove('active'));
+                    sections.forEach(section => section.classList
